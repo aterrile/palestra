@@ -106,3 +106,13 @@ return $integration_default = array(
 function url(){
     echo 'https://www.palestra.cl';
 }
+
+function show_array($array, $die=true){
+    //Muestra en pantalla un arreglo o un objeto de forma legible para el programador
+    echo "<pre>";
+    print_r($array);
+    echo "</pre>";
+    if($die){
+        die();
+    }
+}

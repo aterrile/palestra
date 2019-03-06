@@ -125,6 +125,7 @@ section .box{
 	width: 240px;
 	padding: 44px 20px 20px 20px;
 	margin: 0 auto;
+	height: 410px;
 }
 
 
@@ -147,6 +148,11 @@ section .box h3{
 section .box h3.personalizado{
 	width: 180px;
 	margin-left: -90px;	
+}
+
+section .box h3.estandar{
+    width: 140px;
+    margin-left: -70px;
 }
 
 
@@ -306,7 +312,23 @@ footer p.legal{
 	#popup{
 		width: 90%;
 		margin-left: -45%;
-		top: 60px;
+		top: 10px;
+	}
+
+	#popup h2{
+		font-size: 24px;
+	}
+
+	#popup form label {
+	    margin-bottom: 0px;
+	    font-size: 12px;
+	}
+
+	#popup form .boton {
+	    font-size: 14px;
+	    height: 50px;
+	    line-height: 18px;
+	    margin: 10px auto 0px;
 	}
 
 	footer img.webpay{
