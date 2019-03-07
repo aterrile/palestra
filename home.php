@@ -70,15 +70,34 @@ function url(){
         <div id="titulares">
             <div class="container small">
                 <div class="row">
-                    <?php for ($i=1; $i <= 4 ; $i++) { ?>
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <a href="#">
+                        <a href="<?php url(); ?>/planes">
                             <h3> Compra tu plan </h3>
-                            <img src="img/caluga<?php echo $i; ?>.jpg" class="img-responsive">
+                            <img src="img/caluga1.jpg" class="img-responsive">
                             <span class="boton">ver mas</span>
                         </a>
                     </div>
-                    <?php } ?>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="#">
+                            <h3> tipos entrenamientos </h3>
+                            <img src="img/caluga2.jpg" class="img-responsive">
+                            <span class="boton">ver mas</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="#">
+                            <h3> actividades dirigidas </h3>
+                            <img src="img/caluga3.jpg" class="img-responsive">
+                            <span class="boton">ver mas</span>
+                        </a>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="#">
+                            <h3> horarios clases </h3>
+                            <img src="img/caluga4.jpg" class="img-responsive">
+                            <span class="boton">ver mas</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,6 +115,8 @@ function url(){
                 </div>
             </div>
         </div>
+
+        <img src="img/popup.jpg" class="pop">
 
     </section>
 
@@ -170,6 +191,12 @@ function url(){
 <script src='js/owl.carousel.min.js'></script>
 
 <script src="js/custom.js"></script>
+
+<script>
+    $("img.pop").click(function(){
+        $(this).fadeOut(500);
+    })
+</script>
 
 
 </body>
