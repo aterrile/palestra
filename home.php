@@ -1,46 +1,7 @@
 <?php  
-ini_set('error_reporting', E_ALL); 
-ini_set('display_errors', 1);
-//include '../wp-load.php';
-require_once('vendor/transbank/transbank-sdk/init.php');
-
-use Transbank\Webpay\Configuration;
-use Transbank\Webpay\Webpay;
-
-require_once( 'integration.php' );
-
-$transbank_vars = get_option('woocommerce_transbank_settings');
-
-
-/** Configuracion parametros de la clase Webpay */
-$configuration = new Configuration();
-$configuration->setEnvironment($transbank_vars['webpay_test_mode']);
-$configuration->setCommerceCode($transbank_vars['webpay_commerce_code']);
-$configuration->setPrivateKey($transbank_vars['webpay_private_key']);
-$configuration->setPublicCert($transbank_vars['webpay_public_cert']);
-$configuration->setWebpayCert($transbank_vars['webpay_webpay_cert']);
-
-/** Creacion Objeto Webpay */
-$webpay = new Webpay($configuration);
-
-$tx_step = "Init";
-$amount = 10;
-$buyOrder = rand();
-$sessionId = uniqid();
-$urlReturn = "https://www.palestra.cl/landing/?action=getResult";
-$urlFinal  = "https://www.palestra.cl/landing/?action=end";
-
-$request = array(
-    "amount"    => $amount,
-    "buyOrder"  => $buyOrder,
-    "sessionId" => $sessionId,
-    "urlReturn" => $urlReturn,
-    "urlFinal"  => $urlFinal
-);
-
-/** Iniciamos Transaccion */
-$result = $webpay->getNormalTransaction()->initTransaction($amount, $buyOrder, $sessionId, $urlReturn, $urlFinal);
-
+function url(){
+    echo 'https://www.palestra.cl';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +14,10 @@ $result = $webpay->getNormalTransaction()->initTransaction($amount, $buyOrder, $
     <!-- Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Owl Carousel -->
+    <link href="css/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+
     <link href="css/style.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,7 +28,7 @@ $result = $webpay->getNormalTransaction()->initTransaction($amount, $buyOrder, $
     <link rel="icon" href="img/favicon.png" type="image/png" />
 
 </head>
-<body>
+<body class="page-home">
 
 <main>
     <!-- Static navbar -->
@@ -95,141 +60,43 @@ $result = $webpay->getNormalTransaction()->initTransaction($amount, $buyOrder, $
         <!--/.container-fluid -->
     </nav>
 
-    <section id="mensual">
-        <h2> Plan mensual </h2>
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="personalizado"> Personalizado </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>190.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
+    <section id="home"> 
+        <div id="slider" class="owl-carousel">
+            <div> <img src="fotos/slide1.jpg" class="img-responsive"> </div>
+            <div> <img src="fotos/slide1.jpg" class="img-responsive"> </div>
+            <div> <img src="fotos/slide1.jpg" class="img-responsive"> </div>
+        </div>
+
+        <div id="titulares">
+            <div class="container small">
+                <div class="row">
+                    <?php for ($i=1; $i <= 4 ; $i++) { ?>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <a href="#">
+                            <h3> Compra tu plan </h3>
+                            <img src="img/caluga<?php echo $i; ?>.jpg" class="img-responsive">
+                            <span class="boton">ver mas</span>
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="plus"> plus </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>59.900 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="lite"> lite </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>39.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-    </section>
-    <section id="trimestral">
-        <h2> Plan Trimestral </h2>
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="personalizado"> Personalizado </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>190.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="plus"> plus </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>59.900 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="lite"> lite </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>39.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
+
+        <div class="container small">
+            <div id="brand">
+                <h2>Convenios palestra</h2>
+                <div id="logos" class="owl-carousel">
+                    <?php for ($i=1; $i <= 6 ; $i++) { ?>
+                    <div> <img src="img/logo<?php echo $i; ?>.jpg"> </div>
+                    <?php } ?>
+                    <?php for ($i=1; $i <= 6 ; $i++) { ?>
+                    <div> <img src="img/logo<?php echo $i; ?>.jpg"> </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
-    </section>
-    <section id="semestral">
-        <h2> Plan Semestral </h2>
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="personalizado"> Personalizado </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>190.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="plus"> plus </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>59.900 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="lite"> lite </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>39.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="anual">
-        <h2> Plan Anual </h2>
-        <div class="row">
-            <div class="container">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="personalizado"> Personalizado </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>190.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="plus"> plus </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>59.900 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="box">
-                        <h3 class="lite"> lite </h3>
-                        <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy</p>
-                        <span class="precio"> <sup>$</sup>39.000 </span>
-                        <a href="#" class="boton btnComprar">comprar</a>
-                        <h4> 6 CUOTAS PRECIO CONTADO </h4>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </section>
 
     <footer>
@@ -298,18 +165,12 @@ $result = $webpay->getNormalTransaction()->initTransaction($amount, $buyOrder, $
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="js/bootstrap.min.js"></script>
+
+<!-- Owl Carousel  -->
+<script src='js/owl.carousel.min.js'></script>
+
 <script src="js/custom.js"></script>
 
-
-<script>
-<?php if($_GET['action'] == 'end'){ ?>
-$("#popup h2").text('Transacción Anulada');    
-$("#popup .cerrar").remove();
-$("#popup label, #popup input").remove();
-$("#popup .boton").replaceWith('<button type="button" class="boton" onclick="location.reload()">Volver a intentar</button>');
-$("#popup, .overlay").fadeIn(500);
-<?php } ?>    
-</script>
 
 </body>
 </html>

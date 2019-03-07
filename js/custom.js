@@ -1,5 +1,26 @@
 $(document).ready(function(){
 
+	$("#slider").owlCarousel({
+		items : 1,
+		dots: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        autoplaySpeed: 1800,
+        dotsSpeed: 1800,
+        dragEndSpeed: 1800,
+        rewind: true
+	});
+
+	$("#logos").owlCarousel({
+		items : 6,
+		dots: false,
+		nav: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        rewind: true,
+        navText: ['<i class="fa fa-chevron-left"></i>','<i class="fa fa-chevron-right"></i>']
+	});
+
 	$(".btnComprar").click(function(e){
 		e.preventDefault();
 		var plan = $(this).closest('section').find('h2').text();
