@@ -1,5 +1,8 @@
 <?php
-require_once(TEMPLATEPATH . '/controlpanel.php');
+
+function url(){
+    bloginfo('wpurl');
+}
 
 /**
  * Muestra un arreglo de forma amigable al usuario
