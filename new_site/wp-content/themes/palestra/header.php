@@ -29,7 +29,7 @@
         ?>
     </title>
     <!-- Bootstrap -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/<?php bloginfo('template_url') ?>/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php bloginfo('template_url') ?>/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Owl Carousel -->
@@ -43,6 +43,9 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <link rel="icon" href="<?php bloginfo('template_url') ?>/img/favicon.png" type="image/png" />
+
+    <!-- Datepicker -->
+    <link href="<?php bloginfo('template_url') ?>/css/bootstrap-datepicker3.css" rel="stylesheet">
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCP0SlskY4EhA8ktRTPw5HNz42ipiKGYPk"></script>
 

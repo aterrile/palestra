@@ -1,5 +1,16 @@
 $(document).ready(function(){
 
+	$('#fecha_inicio').datepicker({
+        autoclose: true
+    });
+
+	$(".promo_pop .closeme").click(function(e){
+		e.preventDefault();
+        $('.promo_pop').fadeOut(500);
+    })
+
+	$(".belleza_item:odd").addClass('odd');
+
 	$("section#contacto input, section#contacto textarea").focus(function(){
 		$(this).prev('label').addClass('focused');
 	})
@@ -55,11 +66,33 @@ $(document).ready(function(){
 		$("#popup, .overlay").fadeIn(300);
 	})
 
+
+	$(".promo_pop img.pop").click(function(e){
+		e.preventDefault();
+		var plan = $(this).data('plan');
+		var tipo = $(this).data('tipo');
+		var color = $(this).data('color');
+		var precio_formatted = $(this).data('precio_formatted');
+		var valor_total = $(this).data('valor_total');
+		var StrippedPrecio = precio_formatted.replace(/(<([^>]+)>)/ig,"");
+		
+		$("#valor_total").val(valor_total);
+		$("#plan_elegido").val(plan + '/' + tipo + ': ' + precio_formatted);
+		$("#popup .boton").html('Pagar ' + plan + ' / ' + tipo + ': ' + precio_formatted).css('background-color',color);	
+		$("#popup, .overlay").fadeIn(300);
+	})
+
 	$("#popup .cerrar").click(function(e){
 		e.preventDefault();
 		$("#valor_total").val("");
 		$("#popup, .overlay").fadeOut(300);
 	})
+
+	$('body').keypress(function(e){
+	    if(e.which == 27){
+	        $("#popup, .overlay").fadeOut(300);
+	    }
+	});
 
 })
 

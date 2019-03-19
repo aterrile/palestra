@@ -90,7 +90,11 @@ while( have_posts() ) : the_post();
         </div>
     </div>
 
-    <img src="<?php bloginfo('template_url') ?>/img/popup.jpg" class="pop">
+
+    <div class="promo_pop">
+        <a href="#" class="closeme"><img src="<?php bloginfo('template_url') ?>/img/closeme.png"></a>
+        <img data-plan="Anual" data-tipo="Estandar" data-color="#2d3ba1" data-precio_formatted="$268.888" data-valor_total="268888" src="<?php bloginfo('template_url') ?>/img/popup.jpg" class="pop">
+    </div>
 
 </section>
     

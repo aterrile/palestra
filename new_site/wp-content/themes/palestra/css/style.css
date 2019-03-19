@@ -30,6 +30,11 @@ body{
 	font-weight: normal;
 }
 
+@media (min-width: 1200px){
+	.container.small{
+	    width: 960px;
+	}
+}
 
 .overlay{
 	display: none;
@@ -39,7 +44,7 @@ body{
 	left: 0px;
 	top: 0px;
 	background: rgba(0,0,0,0.6);
-	z-index: 8;
+	z-index: 98;
 }
 
 
@@ -53,6 +58,12 @@ body{
     left: 0%;
     width: 100%;
     z-index: 9;
+}
+
+body.page-template-belleza .navbar,
+body.page-template-planes .navbar{
+	position: relative;
+	top: 0px;
 }
 
 .img-resposive{
@@ -83,6 +94,18 @@ body{
 	color: #fff;
 }
 
+body.page-template-belleza .navbar-default .navbar-nav>li>a,
+body.page-template-planes .navbar-default .navbar-nav>li>a{
+	color: #b9b9b9;
+}
+
+body.page-template-belleza .navbar-default .navbar-nav>li>a:hover,
+body.page-template-belleza .navbar-default .navbar-nav>li.current-menu-item>a,
+body.page-template-planes .navbar-default .navbar-nav>li>a:hover,
+body.page-template-planes .navbar-default .navbar-nav>li.current-menu-item>a{
+	color: #25307e;
+}
+
 
 #popup{
 	display: none;
@@ -91,7 +114,7 @@ body{
 	top: 100px;
 	left: 50%;
 	margin: 0 0 0 -300px;
-	z-index: 9;
+	z-index: 99;
 	background: #fff;
 	padding: 10px;
 }
@@ -145,8 +168,9 @@ body{
 
 
 
-main{
-	/*border-top: 40px solid #18215d;*/
+body.page-template-belleza main,
+body.page-template-planes main{
+	border-top: 40px solid #18215d;
 }
 
 section{
@@ -168,6 +192,7 @@ section h2{
 
 section#mensual{
 	background: #25307e;
+	padding: 60px 0;
 }
 section#mensual h2{
 	width: 393px;
@@ -178,6 +203,7 @@ section#mensual h2{
 
 section#trimestral{
 	background: #2d3ba1;
+	padding: 60px 0;
 }
 section#trimestral h2{
 	width: 482px;
@@ -188,6 +214,7 @@ section#trimestral h2{
 
 section#semestral{
 	background: #25307e;
+	padding: 60px 0;
 }
 
 section#semestral h2{
@@ -200,6 +227,7 @@ section#semestral h2{
 
 section#anual{
 	background: #2d3ba1;
+	padding: 60px 0;
 }
 section#anual h2{
 	width: 303px;
@@ -303,11 +331,6 @@ section .box h4{
 /***************************************************************************
 section#home
 ****************************************************************************/
-@media (min-width: 1200px){
-	section#home .container.small{
-	    width: 960px;
-	}
-}
 
 section#home{
 	padding: 0px;
@@ -347,7 +370,7 @@ section#home .owl-dots .owl-dot.active span{
 
 
 section#home #titulares{
-	padding-top: 40px;
+	padding-top: 30px;
 }
 
 section#home #titulares a{
@@ -355,6 +378,7 @@ section#home #titulares a{
 	background: #232d7d;
 	position: relative;
 	overflow: hidden;
+	margin: 15px 0;
 }
 
 section#home #titulares a img{
@@ -468,12 +492,27 @@ section#home #brand h2{
     background: #fff;
 }
 
-section#home .pop{
+
+section#home .promo_pop{
 	position: fixed;
 	bottom: 0px;
 	right: 0px;
-	z-index: 10;
+	z-index: 12;
+	margin: 0 10px 10px 0;
+}
+
+section#home .promo_pop img.pop{
 	cursor: pointer;
+}
+
+section#home .promo_pop a.closeme{
+	color: red;
+	position: absolute;
+	top: 1px;
+	right: 8px;
+	z-index: 7;
+	display: block;
+	font-size: 18px;
 }
 
 section#home #testimonios{
@@ -815,6 +854,102 @@ section#contacto #mapa{
 
 
 
+/***************************************************************************
+section#belleza
+****************************************************************************/
+section#belleza{
+	color: #fff;
+}
+
+section#belleza .belleza_item{
+	background: #3b1f65;
+	padding: 80px 0
+}
+
+section#belleza .belleza_item.odd{
+	background: #4d2785;
+}
+
+section#belleza .belleza_item form{
+	text-align: center;
+}
+
+section#belleza .belleza_item h3{
+	color: #fff;
+	font-size: 40px;
+	text-transform: uppercase;
+	font-family: 'gobold_thin_lightregular', sans-serif;
+	font-style: italic;
+	margin: 0 0 40px 0;
+}
+
+section#belleza .belleza_item h3 strong{
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #fbd034;
+	font-size: 72px;
+	display: block;
+	margin-left: 60px;
+}
+
+section#belleza .belleza_item h3 strong{
+	color: #3b1f65;
+}
+
+section#belleza .belleza_item.odd h3 strong{
+	color: #4d2785;
+}
+
+section#belleza .belleza_item p{
+	font-size: 16px;
+	width: 75%;
+	font-style: italic;
+}
+
+
+section#belleza .belleza_item select{
+	width: 306px;
+	border: 1px solid #9e9e9e;
+	text-align: center;
+	border-radius: 0px !important;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	display: block;
+	margin: 20px auto;
+}
+
+section#belleza .belleza_item button{
+	display: block;
+	border: 2px solid #c52148;
+	font-size: 20px;
+	font-style: italic;
+	text-align: center;
+	font-family: 'gobold_thin_lightregular', sans-serif;
+	width: 156px;
+	height: 40px;
+	line-height: 34px;
+	margin: 0 auto;
+	color: #fff;
+	background: #c52148;
+}
+
+
+section#belleza .belleza_item h4{
+	font-size: 40px;
+	font-family: 'gobold_thin_lightregular', sans-serif;
+	color: #c52148;
+	margin: 20px 0;
+}
+
+section#belleza .belleza_item h4 sup{
+	font-size: 25px;
+}
+
+
+
+
+
+
 /************************************************
 footer
 ************************************************/
@@ -853,8 +988,15 @@ footer p.legal{
 
 
 @media(max-width: 768px){
+	.img-responsive{
+		width: 100%;
+		height: auto;
+	}
+
 	.navbar{
 		top: 0px;
+		background: #fff;
+		z-index: 10;
 	}
 
 	.navbar-brand img{
