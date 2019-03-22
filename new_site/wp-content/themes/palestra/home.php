@@ -8,92 +8,79 @@
 get_header(); 
 
 while( have_posts() ) : the_post();
+
+$promociones = get_field('promociones');
+$rand_promo = rand(0,(count($promociones)-1));
+$slider_home = get_field('slider_home');
+$calugas = get_field('calugas');
+$testimonios = get_field('testimonios');
+$logos = get_field('logos');
+
 ?>
 
 <section id="home"> 
     <div id="slider" class="owl-carousel">
-        <div> <img src="<?php bloginfo('template_url') ?>/fotos/slide1.jpg" class="img-responsive"> </div>
-        <div> <img src="<?php bloginfo('template_url') ?>/fotos/slide1.jpg" class="img-responsive"> </div>
-        <div> <img src="<?php bloginfo('template_url') ?>/fotos/slide1.jpg" class="img-responsive"> </div>
+        <?php foreach ($slider_home as $key => $slide) { ?>
+        <div> 
+            <?php if($slide['link']){ ?>
+            <a href="<?php echo $slide['link'] ?>">
+            <?php } ?>
+            <img src="<?php echo $slide['foto']['url'] ?>" class="img-responsive"> 
+            <?php if($slide['link']){ ?>
+            </a>
+            <?php } ?>
+        </div>
+        <?php } ?>
     </div>
 
     <div id="titulares">
         <div class="container small">
             <div class="row">
+                <?php foreach ($calugas as $key => $item) { ?>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="<?php url(); ?>/planes">
-                        <h3> Compra tu plan </h3>
-                        <img src="<?php bloginfo('template_url') ?>/img/caluga1.jpg" class="img-responsive">
+                    <a href="<?php echo $item['link'] ?>">
+                        <h3> <?php echo $item['titulo'] ?> </h3>
+                        <img src="<?php echo $item['foto']['url'] ?>" class="img-responsive">
                         <span class="boton">ver mas</span>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="#">
-                        <h3> tipos entrenamientos </h3>
-                        <img src="<?php bloginfo('template_url') ?>/img/caluga2.jpg" class="img-responsive">
-                        <span class="boton">ver mas</span>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="<?php bloginfo('wpurl') ?>/actividades-dirigidas">
-                        <h3> actividades dirigidas </h3>
-                        <img src="<?php bloginfo('template_url') ?>/img/caluga3.jpg" class="img-responsive">
-                        <span class="boton">ver mas</span>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <a href="<?php bloginfo('wpurl') ?>/horarios">
-                        <h3> horarios clases </h3>
-                        <img src="<?php bloginfo('template_url') ?>/img/caluga4.jpg" class="img-responsive">
-                        <span class="boton">ver mas</span>
-                    </a>
-                </div>
+                <?php } ?>
+
             </div>
         </div>
     </div>
 
+    <?php if( $testimonios ): ?>
     <div id="testimonios">
         <div class="container small">
             <div id="carousel_testimonios" class="owl-carousel">
+                <?php foreach ($testimonios as $key => $testimonio) { ?> 
                 <div>
-                    <img src="<?php bloginfo('template_url') ?>/img/testigo.jpg">
-                    <h3>fernandA redondo</h3>
-                    <h4>comentario en facebook</h4>
-                    <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <img src="<?php echo $testimonio['foto']['sizes']['thumbnail'] ?>">
+                    <h3><?php echo $testimonio['autor'] ?></h3>
+                    <h4><?php echo $testimonio['procedencia'] ?></h4>
+                    <p><?php echo $testimonio['testimonio'] ?></p>
                 </div>
-                <div>
-                    <img src="<?php bloginfo('template_url') ?>/img/testigo.jpg">
-                    <h3>fernandA redondo</h3>
-                    <h4>comentario en facebook</h4>
-                    <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
-                <div>
-                    <img src="<?php bloginfo('template_url') ?>/img/testigo.jpg">
-                    <h3>fernandA redondo</h3>
-                    <h4>comentario en facebook</h4>
-                    <p>Lorem Ipsum is simply lores dummy text of the printing and typesetting industrylow. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-                </div>
+                <?php } ?>
             </div>
         </div>
     </div>
+    <?php endif; ?>
 
     <div class="container small">
         <div id="brand">
             <div id="logos" class="owl-carousel">
-                <?php for ($i=1; $i <= 6 ; $i++) { ?>
-                <div> <img src="<?php bloginfo('template_url') ?>/img/logo<?php echo $i; ?>.jpg"> </div>
-                <?php } ?>
-                <?php for ($i=1; $i <= 6 ; $i++) { ?>
-                <div> <img src="<?php bloginfo('template_url') ?>/img/logo<?php echo $i; ?>.jpg"> </div>
+                <?php foreach($logos as $logo) { ?>
+                <div> <img src="<?php echo $logo['url'] ?>"> </div>
                 <?php } ?>
             </div>
         </div>
     </div>
 
-
     <div class="promo_pop">
         <a href="#" class="closeme"><img src="<?php bloginfo('template_url') ?>/img/closeme.png"></a>
-        <img data-plan="Anual" data-tipo="Estandar" data-color="#2d3ba1" data-precio_formatted="$268.888" data-valor_total="268888" src="<?php bloginfo('template_url') ?>/img/popup.jpg" class="pop">
+        <img src="<?php echo $promociones[$rand_promo]['foto']['url'] ?>" class="pop">
+        <button  data-plan="Plan <?php echo $promociones[$rand_promo]['periodo_promo']; ?>" data-tipo="<?php echo $promociones[$rand_promo]['tipo_plan']; ?>" data-color="#2d3ba1" data-precio_formatted="<?php echo "$".number_format($promociones[$rand_promo]['precio'],0,',','.') ?>" data-valor_total="<?php echo $promociones[$rand_promo]['precio']; ?>" class="boton">Comprar</button>
     </div>
 
 </section>

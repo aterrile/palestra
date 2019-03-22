@@ -8,6 +8,9 @@
 get_header(); 
 
 while( have_posts() ) : the_post();
+
+$actividades = get_field('actividades');
+
 ?>
 
 <section id="actividades"> 
@@ -18,38 +21,29 @@ while( have_posts() ) : the_post();
 
     <div class="container">
         <div class="actividades_list">
-            <?php foreach ([1,2,3,4,5,6,7] as $key => $item) { ?>
+            <?php foreach ($actividades as $key => $act) { ?>
             <div class="row actividad_item">
                 <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                    <img src="<?php bloginfo('template_url') ?>/img/actividad<?php echo $item ?>.png" class="img-resposive">
+                    <img src="<?php echo $act['foto']['url'] ?>" class="img-resposive">
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="horarios">
                         <h4>dias y horarios</h4>
                         <ul>
+                            <?php 
+                            $horarios = $act['horarios'];
+                            foreach ($horarios as $h) { 
+                            ?>
                             <li>
-                                <strong>Lunes</strong> (Manuel) <br>
-                                9:00 am / 10:00 am
+                                <strong><?php echo $h['dia'] ?></strong> (<?php echo $h['instructor'] ?>) <br>
+                                <?php echo $h['hora'] ?>
                             </li>
-                            <li>
-                                <strong>Martes</strong> (Manuel) <br>
-                                9:00 am / 10:00 am
-                            </li>
-                            <li>
-                                <strong>Miércoles</strong> (Manuel) <br>
-                                9:00 am / 10:00 am
-                            </li>
-                            <li>
-                                <strong>Jueves</strong> (Manuel) <br>
-                                9:00 am / 10:00 am
-                            </li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <p>Su característica principal es que se trasladan las pesas de la sala de musculación a las clases de aeróbica para conseguir así una mezcla de ejercicios muy satisfactoria.</p>
-                    <p>Los movimientos de la clase son simples y sencillos lo que hace del BodyPump una clase muy accesible para todos los que desean realizar deporte sin tener que seguir coreografías difíciles ni sufrir con posturas que requieran un proceso de aprendizaje largo.</p>
-                    <p>“Todos los ejercicios se realizan con una resistencia añadida mediante una barra y unos discos de peso variable que permiten trabajar el músculo con más intensidad. El peso variará según el grupo muscular que se trabaje y según la capacidad del alumno que lo practique”.</p>
+                    <?php echo $act['descripcion'] ?>
                 </div>
             </div>
             <?php } ?>

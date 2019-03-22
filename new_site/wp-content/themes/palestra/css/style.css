@@ -79,6 +79,11 @@ body.page-template-planes .navbar{
 	margin-top: 30px;
 }
 
+.navbar-default .navbar-nav>li{
+	position: relative;
+}
+
+
 .navbar-default .navbar-nav>li>a{
 	color: #6f6f6f;
 	font-family: 'gobold_thin_lightregular', sans-serif;
@@ -93,6 +98,43 @@ body.page-template-planes .navbar{
 .navbar-default .navbar-nav>li.current-menu-item>a{
 	color: #fff;
 }
+
+
+.navbar-default .navbar-nav>li>ul{
+	position: absolute;
+	border-top: 5px solid #ff0030;
+	background: #fff;
+	top: 97px;
+	display: none;
+	width: 250px;
+	margin: 0;
+	padding: 15px 25px;
+	list-style: none;
+}
+
+.navbar-default .navbar-nav>li:hover>ul{
+	display: block;
+}
+
+.navbar-default .navbar-nav>li>ul>li>a{
+	color: #6f6f6f;
+	font-family: 'gobold_thin_lightregular', sans-serif;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 40px;
+	font-weight: lighter;
+	font-style: normal;
+	padding: 0px;
+	display: block;
+	margin: 10px 0;
+}
+
+.navbar-default .navbar-nav>li>ul>li>a:hover{
+	color: #25307e;
+	text-decoration: none;
+}
+
+
 
 body.page-template-belleza .navbar-default .navbar-nav>li>a,
 body.page-template-planes .navbar-default .navbar-nav>li>a{
@@ -515,6 +557,28 @@ section#home .promo_pop a.closeme{
 	font-size: 18px;
 }
 
+section#home .promo_pop button{
+	position: absolute;
+	bottom: 30px;
+	left: 50%;
+    display: block;
+    border: 2px solid #e8457a;
+    font-size: 16px;
+    text-align: center;
+    font-family: 'gobold_thin_lightregular', sans-serif;
+    width: 120px;
+    height: 34px;
+    line-height: 34px;
+    margin: 20px 0 10px -60px;
+    color: #e8457a;
+    background: transparent;
+    text-transform: uppercase;
+    padding: 0 25px;
+    font-style: italic;
+    cursor: pointer;
+    outline: none; 
+}
+
 section#home #testimonios{
 	background: #192c81;
 	padding: 40px 0 20px 0;
@@ -640,7 +704,7 @@ section#actividades .actividades_list .actividad_item .horarios ul{
     background: #f5f5f5;
     margin: 0px;
     padding: 0px;
-    height: 85%;
+    min-height: auto;
 }
 
 section#actividades .actividades_list .actividad_item .horarios ul li{
@@ -660,6 +724,32 @@ section#actividades .actividades_list .actividad_item p{
 	color: #777;
 	margin-bottom: 20px;
 }
+
+
+
+
+
+
+
+
+
+/***************************************************************************
+section#entrenamientos
+****************************************************************************/
+section#entrenamientos{
+}
+
+section#entrenamientos h2{
+    width: 412px;
+    height: 131px;
+    background: url(../img/tit_entrenamientos.png) no-repeat center center;
+    margin: -30px 0 0 -206px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-size: 100%;
+}
+
 
 
 

@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+	$("section#actividades .actividad_item .horarios ul").each(function(){
+		new_height = ( $(this).closest('.actividad_item').find('.img-resposive').height() - 70 );
+		$(this).height( new_height );
+	})
+
 	$('#fecha_inicio').datepicker({
         autoclose: true
     });
@@ -67,7 +72,7 @@ $(document).ready(function(){
 	})
 
 
-	$(".promo_pop img.pop").click(function(e){
+	$(".promo_pop button").click(function(e){
 		e.preventDefault();
 		var plan = $(this).data('plan');
 		var tipo = $(this).data('tipo');
